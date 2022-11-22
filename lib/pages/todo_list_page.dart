@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TodoListPage extends StatelessWidget {
-  TodoListPage({Key? key}) : super(key: key);
+  const TodoListPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +16,20 @@ class TodoListPage extends StatelessWidget {
                   decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: "Adicione uma tarefa",
-                      hintText: "Exemplo estudar flutter"),
+                      hintText: "Ex: estudar flutter"),
                 ),
               ),
-              SizedBox(width: 8,),
+              SizedBox(width: 8),
               ElevatedButton(
                 onPressed: () {},
-                child: Text("+"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xff00d7f3),
+                  padding: EdgeInsets.all(15),
+                ),
+                child: Icon(
+                  Icons.add,
+                  size: 30,
+                ),
               ),
             ],
           ),
