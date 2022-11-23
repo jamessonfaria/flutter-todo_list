@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
-class RowInputButton {
-  static Flex build() {
+class RowInputButton extends StatelessWidget {
+  const RowInputButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       children: [
         Expanded(

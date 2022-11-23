@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
-class RowTextButton {
-  static Flex build() {
+class RowTextButton extends StatelessWidget {
+  const RowTextButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       children: [
         Expanded(
