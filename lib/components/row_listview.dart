@@ -8,21 +8,18 @@ class RowListView extends StatelessWidget {
     return ListView(
       shrinkWrap: true,
       children: [
-        Container(
-          color: Colors.red,
-          height: 50,
+        ListTile(
+          title: Text("Tarefa 1"),
+          subtitle: Text("20/11/2022"),
+          leading: Icon(Icons.add),
+          onTap: () {
+            print("clicouuuu");
+          },
         ),
-        Container(
-          color: Colors.yellow,
-          height: 50,
-        ),
-        Container(
-          color: Colors.green,
-          height: 50,
-        ),
-        Container(
-          color: Colors.blue,
-          height: 50,
+        ListTile(
+          title: Text("Tarefa 2"),
+          subtitle: Text("20/11/2022"),
+          leading: Icon(Icons.person),
         ),
       ],
     );
