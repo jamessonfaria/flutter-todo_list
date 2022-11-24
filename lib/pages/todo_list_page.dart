@@ -39,6 +39,7 @@ class _TodoListPageState extends State<TodoListPage> {
                       setState(() {
                         todos.add(text);
                       });
+                      todoController.clear();
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xff00d7f3),
@@ -52,17 +53,19 @@ class _TodoListPageState extends State<TodoListPage> {
                 ],
               ),
               SizedBox(height: 16),
-              ListView(
-                shrinkWrap: true,
-                children: [
-                  for (String todo in todos)
-                    ListTile(
-                      title: Text(todo),
-                      onTap: () {
-                        print("tarefa: $todo");
-                      },
-                    ),
-                ],
+              Flexible(
+                child: ListView(
+                  shrinkWrap: true,
+                  children: [
+                    for (String todo in todos)
+                      ListTile(
+                        title: Text(todo),
+                        onTap: () {
+                          print("tarefa: $todo");
+                        },
+                      ),
+                  ],
+                ),
               ),
               SizedBox(height: 16),
               Row(
