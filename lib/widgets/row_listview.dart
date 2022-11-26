@@ -13,7 +13,7 @@ class RowListView extends StatelessWidget {
         shrinkWrap: true,
         children: [
           for (String todo in todos)
-            TodoListItem(),
+            TodoListItem(title: todo),
         ],
       ),
     );
