@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list/widgets/row_listview.dart';
+import 'package:todo_list/widgets/row_text_button.dart';
 
-import '../widgets/todo_list_item.dart';
 
 class TodoListPage extends StatefulWidget {
   const TodoListPage({Key? key}) : super(key: key);
@@ -55,34 +56,9 @@ class _TodoListPageState extends State<TodoListPage> {
                 ],
               ),
               SizedBox(height: 16),
-              Flexible(
-                child: ListView(
-                  shrinkWrap: true,
-                  children: [
-                    for (String todo in todos)
-                      TodoListItem(),
-                  ],
-                ),
-              ),
+              RowListView(todos: todos),
               SizedBox(height: 16),
-              Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      "Você possui 0 tarefas pendentes",
-                    ),
-                  ),
-                  SizedBox(width: 8),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xff00d7f3),
-                      padding: EdgeInsets.all(14),
-                    ),
-                    child: Text("Limpar tudo"),
-                  ),
-                ],
-              )
+              RowTextButton()
             ],
           ),
         ),
