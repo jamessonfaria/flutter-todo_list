@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../models.dart';
+import '../models/todo.dart';
 
 class TodoListItem extends StatelessWidget {
   const TodoListItem({Key? key, required this.todo}) : super(key: key);

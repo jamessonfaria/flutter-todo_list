@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/widgets/todo_list_item.dart';
 
-import '../models.dart';
+import '../models/todo.dart';
 
 class RowListView extends StatelessWidget {
   const RowListView({Key? key, required this.todos}) : super(key: key);
