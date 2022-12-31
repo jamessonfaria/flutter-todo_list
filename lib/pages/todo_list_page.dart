@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/models/todo.dart';
 import 'package:todo_list/repository/todo_repository.dart';
-import 'package:todo_list/widgets/row_listview.dart';
+import 'package:todo_list/widgets/todo_list_item.dart';
 
 class TodoListPage extends StatefulWidget {
   const TodoListPage({Key? key}) : super(key: key);
@@ -15,6 +15,18 @@ class _TodoListPageState extends State<TodoListPage> {
   final TodoRepository todoRepository = TodoRepository();
 
   List<Todo> todos = [];
+  Todo? deletedTodo;
+  int? deletedTodoPos;
+
+  @override
+  void initState() {
+    super.initState();
+    todoRepository.getTodoList().then((value) {
+      setState(() {
+        todos = value;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +75,15 @@ class _TodoListPageState extends State<TodoListPage> {
                   ],
                 ),
                 SizedBox(height: 16),
-                RowListView(todos: todos),
+                Flexible(
+                  child: ListView(
+                    shrinkWrap: true,
+                    children: [
+                      for (Todo todo in todos)
+                        TodoListItem(todo: todo, onDelete: onDelete),
+                    ],
+                  ),
+                ),
                 SizedBox(height: 16),
                 Row(
                   children: [
@@ -86,6 +106,36 @@ class _TodoListPageState extends State<TodoListPage> {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  void onDelete(Todo todo) {
+    deletedTodo = todo;
+    deletedTodoPos = todos.indexOf(todo);
+
+    setState(() {
+      todos.remove(todo);
+    });
+
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 5),
+        content: Text(
+          "Tarefa ${todo.title} foi removida com sucesso!",
+          style: TextStyle(color: Color(0xff060708)),
+        ),
+        backgroundColor: Colors.white,
+        action: SnackBarAction(
+          label: 'Desfazer',
+          textColor: const Color(0xff00d7f3),
+          onPressed: () {
+            setState(() {
+              todos.insert(deletedTodoPos!, deletedTodo!);
+            });
+          },
         ),
       ),
     );
